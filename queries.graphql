@@ -1,0 +1,140 @@
+mutation {
+    createPost (title: "New Post", body: "This body"){
+        title,
+        body,
+        author {
+            displayName
+        }
+    }
+}
+
+query {
+    allPosts {
+        title, body,
+        comments{
+            comment,
+            user {
+                username
+            }
+        },
+        author {
+            displayName
+        }
+    }
+}
+
+query {
+    post(id: "639363f2c5f58cf126835469") {
+        title body 
+        author {
+            displayName
+        }
+    }
+}
+
+mutation {
+    updatePost(
+        id: "639363f2c5f58cf126835469", 
+        title: "New T title",
+        body: "Updated body"
+    ) {
+        title, _id, body
+    }
+}
+
+mutation {
+    deletePost (id: "639363f2c5f58cf126835469"){
+        title,
+        body,
+        author {
+            displayName,
+            email
+        }
+    }
+}
+
+mutation {
+    createComment(
+        postID: "6393ddb11ec9e400e855d349",
+        comment: "awesome post"
+    ){
+        _id, comment,
+        user{
+            username, 
+            displayName,
+            email
+        },
+        post{
+            _id,
+            title,
+            body
+        }
+    }
+}
+
+query {
+    allComments {
+        comment,
+        user {
+            username, email
+        },
+        post {
+            title, body,
+            author {
+                _id
+            }
+        }
+    }
+}
+
+query {
+    comment(id: "6393e80f9d3f0f2ff2850626") {
+        comment,
+        user {
+            username, email
+        },
+        post {
+            title, body,
+            author {
+                _id
+            }
+        }
+    }
+}
+
+mutation {
+    updateComment(
+        id: "6393e80f9d3f0f2ff2850626",
+        comment: "updated awesome post"
+    ){
+        _id, comment,
+        user{
+            username, 
+            displayName,
+            email
+        },
+        post{
+            _id,
+            title,
+            body
+        }
+    }
+}
+
+mutation {
+    deleteComment(
+        id: "6393e80f9d3f0f2ff2850626"
+    ){
+        _id, comment,
+        user{
+            username, 
+            displayName,
+            email
+        },
+        post{
+            _id,
+            title,
+            body
+        }
+    }
+}
